@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 const ContactForm = ({
   onHandleSubmit,
   onHandleNameChange,
@@ -16,6 +16,7 @@ const ContactForm = ({
         name="name"
         value={name}
         onChange={onHandleNameChange}
+        required
       />
     </label>
     <br />
@@ -23,10 +24,11 @@ const ContactForm = ({
       Contact
       <br />
       <input
-        type="text"
+        type="tel"
         name="contact"
         value={number}
         onChange={onHandleNumberChange}
+        required
       />
     </label>
     <br />
@@ -36,5 +38,14 @@ const ContactForm = ({
     </button>
   </form>
 );
-
+ContactForm.propTypes = {
+  onHandleSubmit: PropTypes.func.isRequired,
+  onHandleNameChange: PropTypes.func.isRequired,
+  onHandleNumberChange: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.number.isRequired,
+  ]),
+};
 export default ContactForm;

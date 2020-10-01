@@ -5,9 +5,6 @@ import Filter from "./components/filter";
 import ContactForm from "./components/contactForm";
 
 class Phonebook extends Component {
-  static defaultProps = { amount: 0 };
-
-  static propTypes = {};
   state = {
     contacts: [
       { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
