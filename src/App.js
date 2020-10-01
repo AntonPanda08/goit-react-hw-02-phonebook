@@ -64,7 +64,7 @@ class Phonebook extends Component {
     });
   };
   render() {
-    const { name, number, filter } = this.state;
+    const { contacts, name, number, filter } = this.state;
     return (
       <>
         <h1>Phonebook</h1>
@@ -76,7 +76,9 @@ class Phonebook extends Component {
           number={number}
         />
         <br />
-        <Filter filter={filter} onChangeFilter={this.changeFilter} />
+        {contacts.length > 1 && (
+          <Filter filter={filter} onChangeFilter={this.changeFilter} />
+        )}
 
         <PhoneBookList
           contacts={this.getContacts()}
