@@ -6,25 +6,15 @@ import ContactForm from "./components/contactForm";
 
 class Phonebook extends Component {
   state = {
-    contacts: [
-      { id: "id-1", name: "Rosie Simpson", number: "459-12-56" },
-      { id: "id-2", name: "Hermione Kline", number: "443-89-12" },
-      { id: "id-3", name: "Eden Clements", number: "645-17-79" },
-      { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
-    ],
+    contacts: [],
     name: "",
     number: "",
     filter: "",
   };
-
-  handleNameChange = (e) => {
+  handleChange = (e) => {
+    const { name, value } = e.target;
     this.setState({
-      name: e.target.value,
-    });
-  };
-  handleNumberChange = (e) => {
-    this.setState({
-      number: e.target.value,
+      [name]: value,
     });
   };
   handleSubmit = (e) => {
@@ -70,8 +60,7 @@ class Phonebook extends Component {
         <h1>Phonebook</h1>
         <ContactForm
           onHandleSubmit={this.handleSubmit}
-          onHandleNameChange={this.handleNameChange}
-          onHandleNumberChange={this.handleNumberChange}
+          onHandleChange={this.handleChange}
           name={name}
           number={number}
         />
