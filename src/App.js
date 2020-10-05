@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import createContact from "./utils/createContact";
-import PhoneBookList from "./phoneBookList";
+import PhoneBookList from "./components/phoneBookList";
 import Filter from "./components/filter";
 import ContactForm from "./components/contactForm";
 
@@ -19,7 +19,11 @@ class Phonebook extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.addContact();
+    const { contacts, name } = this.state;
+    const contactName = name.toLowerCase();
+    contacts.find((contact) => contact.name.toLowerCase() === contactName)
+      ? alert(`${name} already in your contact list`)
+      : this.addContact();
   };
   changeFilter = (e) => {
     this.setState({ filter: e.target.value });
@@ -28,14 +32,7 @@ class Phonebook extends Component {
     const { name, number } = this.state;
     const contact = createContact(name, number);
     this.setState((prevState) => {
-      let duplicate = this.state.contacts
-        .map((contact) => contact.name)
-        .includes(prevState.name);
-      return duplicate
-        ? alert(`${prevState.name} is already in list`)
-        : {
-            contacts: [...prevState.contacts, contact],
-          };
+      return { contacts: [...prevState.contacts, contact] };
     });
   };
   getContacts = () => {

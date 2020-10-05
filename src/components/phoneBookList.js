@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+// import PhoneBookItem from "./phoneBookItem";
 const PhoneBookList = ({ contacts, onRemoveContact }) => (
   <ul>
-    {contacts.map(({ name, id, number }) => (
+    {contacts.map(({ id, number, name }) => (
       <li key={id}>
         <span>
           {name}: {number}
