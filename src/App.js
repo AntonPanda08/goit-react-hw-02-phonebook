@@ -21,9 +21,14 @@ class Phonebook extends Component {
     e.preventDefault();
     const { contacts, name } = this.state;
     const contactName = name.toLowerCase();
-    contacts.find((contact) => contact.name.toLowerCase() === contactName)
-      ? alert(`${name} already in your contact list`)
-      : this.addContact();
+    const duplicate = contacts.some(
+      (contact) => contact.name.toLowerCase() === contactName
+    );
+    if (duplicate) {
+      alert(`${name} already in your contact list`);
+      return;
+    }
+    this.addContact();
   };
   changeFilter = (e) => {
     this.setState({ filter: e.target.value });
